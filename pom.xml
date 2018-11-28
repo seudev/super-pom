@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.seudev</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>super-pom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Super Pom</name>
+    <description>The super Pom of the Seudev projects</description>
+    <url>http://super-pom.seudev.com</url>
+    <inceptionYear>2018</inceptionYear>
+
+    <organization>
+        <name>Seudev</name>
+        <url>https://seudev.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>ThomasSousa96</id>
+            <name>Thomás Sousa Silva</name>
+            <email>thomas@seudev.com</email>
+            <url>http://thomas.seudev.com</url>
+            <organization>Seudev</organization>
+            <organizationUrl>https://seudev.com</organizationUrl>
+            <roles>
+                <role>Founder</role>
+                <role>Chief Executive Officer</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>America/Recife</timezone>
+            <properties>
+                <picUrl>https://seudev.com/img/member/ThomasSousa96.jpeg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/seudev/super-pom</url>
+        <connection>scm:git:https://github.com/seudev/super-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/seudev/super-pom.git</developerConnection>
+        <tag>master</tag>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/seudev/super-pom/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <profiles>
+        <profile>
+            <id>super</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <properties>
+                <!-- Maven -->
+                <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+                <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+                <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+
+                <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+                <maven-surefire-plugin.trimStackTrace>false</maven-surefire-plugin.trimStackTrace>
+
+                <maven-failsafe-plugin.version>${maven-surefire-plugin.version}</maven-failsafe-plugin.version>
+                <maven-failsafe-plugin.trimStackTrace>false</maven-failsafe-plugin.trimStackTrace>
+
+                <maven-surefire-report-plugin.version>${maven-surefire-plugin.version}</maven-surefire-report-plugin.version>
+
+                <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+                <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+
+                <!-- Javadoc -->
+                <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+                <javadoc.show>private</javadoc.show>
+                <javadoc.keywords>true</javadoc.keywords>
+
+                <!-- TagList -->
+                <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
+
+                <!-- Checkstyle -->
+                <maven-checkstyle-plugin.version>3.0.1-SNAPSHOT</maven-checkstyle-plugin.version>
+                <checkstyle.version>8.13</checkstyle.version>
+                <checkstyle.configLocation>https://raw.githubusercontent.com/seudev/seudev-patterns/master/java/seudev_java_checks.xml</checkstyle.configLocation>
+                <checkstyle.includeTestSourceDirectory>true</checkstyle.includeTestSourceDirectory>
+                <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+
+                <!-- PMD -->
+                <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+                <pmd.version>6.8.0</pmd.version>
+                <pmd.includeTests>true</pmd.includeTests>
+                <pmd.ruleset>https://raw.githubusercontent.com/seudev/seudev-patterns/master/java/seudev_java_ruleset.xml</pmd.ruleset>
+
+                <!-- CPD -->
+                <cpd.minimumTokens>30</cpd.minimumTokens>
+                <cpd.ignoreIdentifiers>true</cpd.ignoreIdentifiers>
+                <cpd.ignoreLiterals>true</cpd.ignoreLiterals>
+                <cpd.printFailingErrors>true</cpd.printFailingErrors>
+
+                <!-- SpotBugs -->
+                <spotbugs-maven-plugin.version>3.1.7</spotbugs-maven-plugin.version>
+                <spotbugs.version>3.1.8</spotbugs.version>
+                <spotbugs.threshold>Low</spotbugs.threshold>
+                <spotbugs.effort>Max</spotbugs.effort>
+                <spotbugs.includeTests>true</spotbugs.includeTests>
+
+                <!-- JaCoCo -->
+                <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+
+                <!-- l10n -->
+                <l10n.maven.version>1.0-alpha-2</l10n.maven.version>
+
+                <!-- LinkCheck -->
+                <maven-linkcheck-plugin.version>1.2</maven-linkcheck-plugin.version>
+            </properties>
+
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <version>${maven-compiler-plugin.version}</version>
+                            <configuration>
+                                <compilerArgs>
+                                    <arg>-parameters</arg>
+                                </compilerArgs>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>${maven-project-info-reports-plugin.version}</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>${maven-javadoc-plugin.version}</version>
+                            <configuration>
+                                <windowtitle><![CDATA[${project.organization.name} / ${project.name} / ${project.version} Reference]]></windowtitle>
+                                <testWindowtitle><![CDATA[${project.organization.name} / ${project.name} / ${project.version} Reference]]></testWindowtitle>
+                                <header><![CDATA[<a href="${project.organization.url}" target="_blank">${project.organization.name}<a> / <a href="${env.SITE_BASE_URL}/version/latest/index.html" target="_blank">${project.name}<a> / <a href="${env.SITE_BASE_URL}/version/${project.version}/index.html" target="_blank">${project.version}<a>]]></header>
+                                <footer><![CDATA[<a href="${project.organization.url}" target="_blank">${project.organization.name}<a> / <a href="${env.SITE_BASE_URL}/version/latest/index.html" target="_blank">${project.name}<a> / <a href="${env.SITE_BASE_URL}/version/${project.version}/index.html" target="_blank">${project.version}<a>]]></footer>
+                                <keywords>${javadoc.keywords}</keywords>
+                                <level>${javadoc.show}</level>
+                                <show>${javadoc.show}</show>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>${maven-jxr-plugin.version}</version>
+                            <configuration>
+                                <docTitle><![CDATA[${project.organization.name} / ${project.name} / ${project.version} Reference]]></docTitle>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>versions-maven-plugin</artifactId>
+                            <version>${versions-maven-plugin.version}</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>taglist-maven-plugin</artifactId>
+                            <version>${taglist-maven-plugin.version}</version>
+                            <configuration>
+                                <tagListOptions>
+                                    <tagClasses>
+                                        <tagClass>
+                                            <displayName>FIXME</displayName>
+                                            <tags>
+                                                <tag>
+                                                    <matchString>FIXME</matchString>
+                                                    <matchType>exact</matchType>
+                                                </tag>
+                                            </tags>
+                                        </tagClass>
+                                        <tagClass>
+                                            <displayName>TODO</displayName>
+                                            <tags>
+                                                <tag>
+                                                    <matchString>TODO</matchString>
+                                                    <matchType>exact</matchType>
+                                                </tag>
+                                            </tags>
+                                        </tagClass>
+                                    </tagClasses>
+                                </tagListOptions>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>${maven-checkstyle-plugin.version}</version>
+                            <configuration>
+                                <configLocation>${checkstyle.configLocation}</configLocation>
+                                <includeTestSourceDirectory>${checkstyle.includeTestSourceDirectory}</includeTestSourceDirectory>
+                                <consoleOutput>${checkstyle.consoleOutput}</consoleOutput>
+                            </configuration>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>com.puppycrawl.tools</groupId>
+                                    <artifactId>checkstyle</artifactId>
+                                    <version>${checkstyle.version}</version>
+                                </dependency>
+                            </dependencies>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>${maven-pmd-plugin.version}</version>
+                            <configuration>
+                                <includeTests>${pmd.includeTests}</includeTests>
+                                <minimumTokens>${cpd.minimumTokens}</minimumTokens>
+                                <ignoreIdentifiers>${cpd.ignoreIdentifiers}</ignoreIdentifiers>
+                                <ignoreLiterals>${cpd.ignoreLiterals}</ignoreLiterals>
+                                <printFailingErrors>${cpd.printFailingErrors}</printFailingErrors>
+                                <rulesets>
+                                    <ruleset>${pmd.ruleset}</ruleset>
+                                </rulesets>
+                            </configuration>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>net.sourceforge.pmd</groupId>
+                                    <artifactId>pmd-core</artifactId>
+                                    <version>${pmd.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>net.sourceforge.pmd</groupId>
+                                    <artifactId>pmd-java</artifactId>
+                                    <version>${pmd.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>net.sourceforge.pmd</groupId>
+                                    <artifactId>pmd-javascript</artifactId>
+                                    <version>${pmd.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>net.sourceforge.pmd</groupId>
+                                    <artifactId>pmd-jsp</artifactId>
+                                    <version>${pmd.version}</version>
+                                </dependency>
+                            </dependencies>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs-maven-plugin</artifactId>
+                            <version>${spotbugs-maven-plugin.version}</version>
+                            <configuration>
+                                <threshold>${spotbugs.threshold}</threshold>
+                                <effort>${spotbugs.effort}</effort>
+                                <includeTests>${spotbugs.includeTests}</includeTests>
+                                <xmlOutput>true</xmlOutput>
+                            </configuration>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>com.github.spotbugs</groupId>
+                                    <artifactId>spotbugs</artifactId>
+                                    <version>${spotbugs.version}</version>
+                                </dependency>
+                            </dependencies>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <version>${jacoco-maven-plugin.version}</version>
+                            <configuration>
+                                <title><![CDATA[${project.organization.name} / ${project.name} / ${project.version} JaCoCo]]></title>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>default-prepare-agent</id>
+                                    <goals>
+                                        <goal>prepare-agent</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>default-prepare-agent-integration</id>
+                                    <goals>
+                                        <goal>prepare-agent-integration</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>default-report</id>
+                                    <goals>
+                                        <goal>report</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>default-report-integration</id>
+                                    <goals>
+                                        <goal>report-integration</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>default-check</id>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>${maven-surefire-plugin.version}</version>
+                            <configuration>
+                                <trimStackTrace>${maven-surefire-plugin.trimStackTrace}</trimStackTrace>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <version>${maven-failsafe-plugin.version}</version>
+                            <configuration>
+                                <trimStackTrace>${maven-failsafe-plugin.trimStackTrace}</trimStackTrace>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>default-integration-test</id>
+                                    <goals>
+                                        <goal>integration-test</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-report-plugin</artifactId>
+                            <version>${maven-surefire-report-plugin.version}</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-site-plugin</artifactId>
+                            <version>${maven-site-plugin.version}</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>l10n-maven-plugin</artifactId>
+                            <version>${l10n.maven.version}</version>
+                            <configuration>
+                                <excludes>META-INF/source-code.properties</excludes>
+                                <locales>
+                                    <locale>ar</locale>
+                                    <locale>hi</locale>
+                                    <locale>bn</locale>
+                                    <locale>ca</locale>
+                                    <locale>pa</locale>
+                                    <locale>cs</locale>
+                                    <locale>da</locale>
+                                    <locale>de</locale>
+                                    <locale>es</locale>
+                                    <locale>fr</locale>
+                                    <locale>gl</locale>
+                                    <locale>hu</locale>
+                                    <locale>it</locale>
+                                    <locale>ja</locale>
+                                    <locale>ko</locale>
+                                    <locale>lt</locale>
+                                    <locale>nl</locale>
+                                    <locale>no</locale>
+                                    <locale>pl</locale>
+                                    <locale>pt</locale>
+                                    <locale>pt_BR</locale>
+                                    <locale>ru</locale>
+                                    <locale>sk</locale>
+                                    <locale>sv</locale>
+                                    <locale>tr</locale>
+                                    <locale>zh_CN</locale>
+                                    <locale>zh_TW</locale>
+                                </locales>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-linkcheck-plugin</artifactId>
+                            <version>${maven-linkcheck-plugin.version}</version>
+                            <configuration>
+                                <baseURL>${env.SITE_BASE_URL}</baseURL>
+                                <excludedLinks>
+                                    <excludedLink>#</excludedLink>
+                                    <excludedLink>${env.SONAR_BASE_URL}/api/project_badges</excludedLink>
+                                    <excludedLink>${env.SITE_BASE_URL}/index.html</excludedLink>
+                                    <excludedLink>${env.SITE_BASE_URL}/version/latest/index.html</excludedLink>
+                                    <excludedLink>${env.SITE_BASE_URL}/version/${project.version}/index.html</excludedLink>
+                                    <excludedLink>https://www.facebook.com/**</excludedLink>
+                                    <excludedLink>https://twitter.com/**</excludedLink>
+                                </excludedLinks>
+                                <excludedPages>
+                                    <excludedPage>checkstyle.html</excludedPage>
+                                    <excludedPage>ci-management.html</excludedPage>
+                                    <excludedPage>cpd.html</excludedPage>
+                                    <excludedPage>dependencies.html</excludedPage>
+                                    <excludedPage>dependency-convergence.html</excludedPage>
+                                    <excludedPage>dependency-info.html</excludedPage>
+                                    <excludedPage>dependency-updates-report.html</excludedPage>
+                                    <excludedPage>issue-management.html</excludedPage>
+                                    <excludedPage>l10n-status.html</excludedPage>
+                                    <excludedPage>linkcheck.html</excludedPage>
+                                    <excludedPage>plugin-management.html</excludedPage>
+                                    <excludedPage>plugins.html</excludedPage>
+                                    <excludedPage>plugin-updates-report.html</excludedPage>
+                                    <excludedPage>pmd.html</excludedPage>
+                                    <excludedPage>project-info.html</excludedPage>
+                                    <excludedPage>project-reports.html</excludedPage>
+                                    <excludedPage>property-updates-report.html</excludedPage>
+                                    <excludedPage>scm.html</excludedPage>
+                                    <excludedPage>spotbugs.html</excludedPage>
+                                    <excludedPage>summary.html</excludedPage>
+                                    <excludedPage>surefire-report.html</excludedPage>
+                                    <excludedPage>taglist.html</excludedPage>
+                                    <excludedPage>team.html</excludedPage>
+                                    <excludedPage>version-list.html</excludedPage>
+                                    <excludedPage>jacoco/**</excludedPage>
+                                    <excludedPage>jacoco-aggregate/**</excludedPage>
+                                    <excludedPage>xref/**</excludedPage>
+                                    <excludedPage>xref-test/**</excludedPage>
+                                    <excludedPage>apidocs/**</excludedPage>
+                                    <excludedPage>testapidocs/**</excludedPage>
+                                </excludedPages>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>index</report>
+                                    <report>summary</report>
+                                    <report>mailing-lists</report>
+                                    <report>issue-management</report>
+                                    <report>distribution-management</report>
+                                    <report>ci-management</report>
+                                    <report>scm</report>
+                                    <report>dependency-info</report>
+                                    <report>dependencies</report>
+                                    <report>dependency-management</report>
+                                    <report>dependency-convergence</report>
+                                    <report>modules</report>
+                                    <report>plugin-management</report>
+                                    <report>plugins</report>
+                                    <report>licenses</report>
+                                    <report>team</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>versions-maven-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>dependency-updates-report</report>
+                                    <report>property-updates-report</report>
+                                    <report>plugin-updates-report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>taglist-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <configuration>
+                            <consoleOutput>false</consoleOutput>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>checkstyle</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <configuration>
+                            <printFailingErrors>false</printFailingErrors>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>report-only</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>l10n-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-linkcheck-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+    </profiles>
+</project>
